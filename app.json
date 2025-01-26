@@ -1,0 +1,87 @@
+{
+  "expo": {
+    "name": "School Management",
+    "slug": "schoolmanagement",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "schoolmanagement",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "softwareKeyboardLayoutMode": "pan",
+      "package": "com.mohamedodesu.expo_starter_template"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff"
+        }
+      ],
+      [
+        "expo-updates",
+        {
+          "username": "mohamedo-desu"
+        }
+      ],
+      [
+        "@sentry/react-native/expo",
+        {
+          "url": "https://sentry.io/",
+          "organization": "mohamedo-apps-desu",
+          "project": "school_management"
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "",
+          "color": "",
+          "sounds": []
+        }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/Okra-Bold.ttf",
+            "./assets/fonts/Okra-ExtraBold.ttf",
+            "./assets/fonts/Okra-Medium.ttf",
+            "./assets/fonts/Okra-MediumLight.ttf",
+            "./assets/fonts/Okra-Regular.ttf"
+          ]
+        }
+      ],
+      "expo-secure-store"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "e4a51154-8d4c-4d44-a1e5-14a3454a0e0c"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/e4a51154-8d4c-4d44-a1e5-14a3454a0e0c"
+    }
+  }
+}
