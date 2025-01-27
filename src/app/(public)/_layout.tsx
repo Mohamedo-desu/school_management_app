@@ -17,12 +17,7 @@ const PublicLayout = () => {
           animation: "slide_from_right",
         }}
       />
-      <Stack.Screen
-        name="sign_up"
-        options={{
-          animation: "slide_from_right",
-        }}
-      />
+      <Stack.Screen name="sign_up" />
       <Stack.Screen
         name="forgot_password"
         options={{

@@ -8,6 +8,6 @@ export interface SettingsState {
 
 // Create the store with persistence
 export const useSettingsStore = create<SettingsState>((set) => ({
-  theme: "system",
+  theme: "light",
   setTheme: (theme: SettingsState["theme"]) => set({ theme }),
 }));

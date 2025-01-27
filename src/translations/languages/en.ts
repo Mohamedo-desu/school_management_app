@@ -1,8 +1,7 @@
 export const en = {
   translation: {
     onboarding: {
-      description:
-        "Welcome to the latest school management app! Access timetables, assignments, grades, and more, all in one place.",
+      description: "Sign up to create an account or sign in to continue",
       get_started: "Get Started",
     },
     signIn: {

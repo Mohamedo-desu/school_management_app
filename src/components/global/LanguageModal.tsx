@@ -8,14 +8,19 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
+import CountryFlag from "react-native-country-flag";
 import { RFValue } from "react-native-responsive-fontsize";
 import { StyleSheet } from "react-native-unistyles";
 
 interface LanguageModalProps {
   visible: boolean;
   onClose: () => void;
-  languages: { code: string; name: string }[];
-  onLanguageSelect: (language: { code: string; name: string }) => void;
+  languages: { code: string; name: string; flag: string }[];
+  onLanguageSelect: (language: {
+    code: string;
+    name: string;
+    flag: string;
+  }) => void;
 }
 
 const LanguageModal: React.FC<LanguageModalProps> = ({
@@ -44,12 +49,20 @@ const LanguageModal: React.FC<LanguageModalProps> = ({
                   key={language.code}
                   style={styles.languageOption}
                   onPress={() => onLanguageSelect(language)}
+                  activeOpacity={0.8}
                 >
+                  <CountryFlag
+                    isoCode={language.flag}
+                    size={RFValue(20)}
+                    style={styles.flagIcon}
+                  />
+                  {/* Display the flag */}
                   <CustomText
                     fontFamily={Fonts.Regular}
                     style={styles.languageText}
                   >
-                    {language.name}{" "}
+                    {language.name}
+                    {" - "}
                     <CustomText style={styles.languageCode}>
                       ({language.code})
                     </CustomText>
@@ -75,8 +88,8 @@ const styles = StyleSheet.create((theme) => ({
   },
   modalContainer: {
     backgroundColor: theme.Colors.background,
-    borderRadius: 10,
-    width: "80%",
+    borderRadius: theme.border.xs,
+    width: "60%",
     padding: 20,
     elevation: 5,
     maxHeight: "70%",
@@ -86,14 +99,19 @@ const styles = StyleSheet.create((theme) => ({
   },
   languageOption: {
     paddingVertical: theme.margins.sm,
+    flexDirection: "row",
     alignItems: "center",
+    gap: 10,
+    width: "100%",
+    alignSelf: "center",
   },
   languageText: {
     fontSize: RFValue(14),
     textAlign: "center",
   },
   languageCode: {
-    fontSize: RFValue(12),
+    fontSize: RFValue(14),
     color: theme.Colors.primary,
   },
+  flagIcon: {},
 }));

@@ -6,10 +6,12 @@ import { Fonts } from "@/constants/Fonts";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useSettingsStore } from "@/store/settingsStore";
 import { AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
+import { Image } from "expo-image";
 import { router } from "expo-router";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { TouchableOpacity, View } from "react-native";
+import CountryFlag from "react-native-country-flag";
 import { RFValue } from "react-native-responsive-fontsize";
 import { moderateScale } from "react-native-size-matters";
 import { StyleSheet, useUnistyles } from "react-native-unistyles";
@@ -39,12 +41,17 @@ const OnboardingScreen = () => {
           activeOpacity={0.8}
           style={styles.headerLanguage}
         >
+          <CountryFlag
+            isoCode={selectedLanguage.flag}
+            size={RFValue(10)}
+            style={styles.flagIcon}
+          />
           <CustomText
             fontFamily={Fonts.Medium}
             variant="h6"
             style={styles.headerText}
           >
-            {selectedLanguage}
+            {selectedLanguage.name}
           </CustomText>
           <AntDesign
             name="down"
@@ -52,27 +59,37 @@ const OnboardingScreen = () => {
             color={theme.Colors.gray[500]}
           />
         </TouchableOpacity>
+
+        {/* Animated theme icon */}
         <TouchableOpacity
           activeOpacity={0.8}
           onPress={() => {
             setTheme(currTheme === "light" ? "dark" : "light");
           }}
         >
-          <MaterialCommunityIcons
-            name="theme-light-dark"
-            size={RFValue(24)}
-            color={theme.Colors.gray[500]}
-          />
+          {currTheme === "light" ? (
+            <MaterialCommunityIcons
+              name="white-balance-sunny"
+              size={RFValue(24)}
+              color={theme.Colors.sun}
+            />
+          ) : (
+            <MaterialCommunityIcons
+              name="moon-waxing-crescent"
+              size={RFValue(24)}
+              color={theme.Colors.typography}
+            />
+          )}
         </TouchableOpacity>
       </View>
 
       {/* Content */}
-
-      <MaterialCommunityIcons
-        name="school"
-        size={RFValue(200)}
-        color={theme.Colors.typography}
+      <Image
+        source={require("@/assets/images/logo.png")}
+        contentFit="contain"
+        style={styles.image}
       />
+
       <CustomText fontFamily={Fonts.Bold} style={styles.appName}>
         {appName}
       </CustomText>
@@ -111,13 +128,12 @@ const styles = StyleSheet.create((theme, rt) => ({
     paddingHorizontal: theme.margins.lg,
     alignItems: "center",
     justifyContent: "center",
-    paddingBottom: rt.insets.bottom,
   },
   header: {
     flexDirection: "row",
     alignItems: "center",
     position: "absolute",
-    top: rt.insets.top + 10,
+    top: rt.insets.top + 20,
     width: "100%",
     justifyContent: "space-between",
   },
@@ -146,11 +162,12 @@ const styles = StyleSheet.create((theme, rt) => ({
   },
   button: {
     position: "absolute",
-    bottom: 35,
+    bottom: rt.insets.bottom,
     borderRadius: theme.border.sm,
   },
   buttonText: {
     fontFamily: Fonts.SemiBold,
     fontSize: RFValue(16),
   },
+  flagIcon: {},
 }));

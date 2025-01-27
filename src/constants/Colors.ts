@@ -3,6 +3,7 @@ export const Colors = {
   secondary: "#4cbba1",
   error: "#FF3D00",
   warning: "#FFA500",
+  sun: "#FFD700",
   success: "#0acf45",
   white: "#ffffff",
   black: "#141414",
