@@ -23,7 +23,7 @@ import * as Yup from "yup";
 const SignUpScreen = () => {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [verifying, setVerifying] = useState(true);
+  const [verifying, setVerifying] = useState(false);
   const [code, setCode] = useState("");
   const { t } = useTranslation();
   const { isLoaded, signUp, setActive } = useSignUp();
@@ -188,7 +188,7 @@ const SignUpScreen = () => {
 
         {/* Custom Verification Modal */}
       </KeyboardAwareScrollView>
-      <Modal visible={verifying} transparent animationType="slide">
+      <Modal visible={verifying} transparent animationType="fade">
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
             <CustomText style={styles.modalTitle}>Verify Your Email</CustomText>

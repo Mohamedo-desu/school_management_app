@@ -8,12 +8,17 @@ import ArrowLeftIcon from "./ArrowLeftIcon";
 interface AuthHeaderProps {
   title: string;
   description: string;
+  showArrow: boolean;
 }
 
-const AuthHeader: FC<AuthHeaderProps> = ({ title, description }) => {
+const AuthHeader: FC<AuthHeaderProps> = ({
+  title,
+  description,
+  showArrow = true,
+}) => {
   return (
     <View style={styles.container}>
-      <ArrowLeftIcon />
+      {showArrow && <ArrowLeftIcon />}
       <View style={styles.descriptionContainer}>
         <CustomText fontFamily={Fonts.Bold} variant="h1">
           {title}

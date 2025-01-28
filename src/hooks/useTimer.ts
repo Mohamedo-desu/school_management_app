@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const useTimer = () => {
-  const [seconds, setSeconds] = useState(59);
+  const [seconds, setSeconds] = useState(29);
   useEffect(() => {
     let interval = undefined;
     if (seconds > 0) {
@@ -25,7 +25,7 @@ const useTimer = () => {
       return `(${formattedSec}s)`;
     }
   };
-  const resetTimer = () => setSeconds(59);
+  const resetTimer = () => setSeconds(29);
   const timerUp = () => seconds === 0;
 
   return { displayTime, resetTimer, timerUp };

@@ -1,22 +1,41 @@
-import { getStoredValues } from "@/store/storage";
-import { Redirect } from "expo-router";
+import CustomButton from "@/components/global/CustomButton";
+import { useAuth } from "@clerk/clerk-expo";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { useTranslation } from "react-i18next";
+import { View } from "react-native";
+import { RFValue } from "react-native-responsive-fontsize";
+import { StyleSheet } from "react-native-unistyles";
 
-const index = () => {
-  const { user_setup } = getStoredValues(["user_setup"]);
-
-  if (!user_setup || user_setup === "false") {
-    return <Redirect href={"/(authenticated)/user_setup"} />;
-  }
-
+const Index = () => {
+  const { t } = useTranslation();
+  const { signOut } = useAuth();
   return (
-    <View>
-      <Text>index</Text>
+    <View style={styles.container}>
+      <CustomButton
+        text={t("index.logOut")}
+        onPress={() => signOut()}
+        style={styles.button}
+        textStyle={styles.buttonText}
+      />
     </View>
   );
 };
 
-export default index;
+export default Index;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create((theme, rt) => ({
+  container: {
+    flex: 1,
+    backgroundColor: theme.Colors.background,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: theme.margins.lg,
+  },
+  button: {
+    borderRadius: theme.border.sm,
+  },
+  buttonText: {
+    fontFamily: theme.fonts.SemiBold,
+    fontSize: RFValue(16),
+  },
+}));

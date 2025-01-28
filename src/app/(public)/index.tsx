@@ -133,7 +133,7 @@ const styles = StyleSheet.create((theme, rt) => ({
     flexDirection: "row",
     alignItems: "center",
     position: "absolute",
-    top: rt.insets.top + 20,
+    top: rt.insets.top + 5,
     width: "100%",
     justifyContent: "space-between",
   },
@@ -162,7 +162,7 @@ const styles = StyleSheet.create((theme, rt) => ({
   },
   button: {
     position: "absolute",
-    bottom: rt.insets.bottom,
+    bottom: rt.insets.bottom + 5,
     borderRadius: theme.border.sm,
   },
   buttonText: {

@@ -1,9 +1,8 @@
 export const sw = {
   translation: {
     onboarding: {
-      description:
-        "Imeundwa kukusaidia kushiriki, kuungana, na kuchunguza shauku yako",
-      get_started: "Anza",
+      description: "Jisajili ili kuunda akaunti au ingia ili kuendelea",
+      get_started: "Endelea",
     },
     signIn: {
       title: "Karibu tena! 🎉",
@@ -40,6 +39,9 @@ export const sw = {
       resetPassword: "Rekebisha nenosiri",
       resendCode: "Tuma tena nambari",
       resendCodeIn: "Tuma tena nambari baada ya {{displayTime}}",
+    },
+    index: {
+      logOut: "Ondoka",
     },
     privacy: {
       title: "Kwa kuendelea, unakubali",

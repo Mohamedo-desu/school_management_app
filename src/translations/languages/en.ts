@@ -2,7 +2,7 @@ export const en = {
   translation: {
     onboarding: {
       description: "Sign up to create an account or sign in to continue",
-      get_started: "Get Started",
+      get_started: "Continue",
     },
     signIn: {
       title: "Welcome Back! 🎉",
@@ -15,7 +15,7 @@ export const en = {
       passwordPlaceholder: "Enter your password",
     },
     signUp: {
-      title: "Are you a student?",
+      title: "Create an Account",
       description: "Sign up to continue",
       signUp: "Sign Up",
       or: "Or continue with",
@@ -39,6 +39,9 @@ export const en = {
       resetPassword: "Reset Password",
       resendCode: "Resend Code",
       resendCodeIn: "Resend code in {{displayTime}}",
+    },
+    index: {
+      logOut: "Log Out",
     },
     settings: {
       title: "Account Settings",

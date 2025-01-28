@@ -11,7 +11,7 @@ const AuthenticatedLayout = () => {
   //useSetupForPushNotifications();
   useNotificationObserver();
 
-  return <Stack screenOptions={{ headerShown: false }} />;
+  return <Stack screenOptions={{ headerShown: true }} />;
 };
 
 export default AuthenticatedLayout;

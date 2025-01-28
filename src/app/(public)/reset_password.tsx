@@ -9,9 +9,9 @@ import useTimer from "@/hooks/useTimer";
 import { useSignIn } from "@clerk/clerk-expo";
 import { useLocalSearchParams } from "expo-router";
 import { Formik } from "formik";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { TouchableOpacity, View } from "react-native";
+import { BackHandler, TouchableOpacity, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
 import { StyleSheet } from "react-native-unistyles";
 import * as Yup from "yup";
@@ -100,6 +100,25 @@ const ResetPasswordScreen = () => {
       .oneOf([Yup.ref("newPassword")], t("validation.passwordMatch")),
   });
 
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      () => {
+        if (!timerUp()) {
+          showToast(
+            "error",
+            "Action Blocked",
+            "Please wait for the timer to complete."
+          );
+          return true; // Prevent default behavior
+        }
+        return false; // Allow default behavior
+      }
+    );
+
+    return () => backHandler.remove(); // Clean up listener on unmount
+  }, [timerUp]);
+
   return (
     <KeyboardAwareScrollView
       keyboardShouldPersistTaps="handled"
@@ -110,6 +129,7 @@ const ResetPasswordScreen = () => {
       <AuthHeader
         title={t("resetPassword.title")}
         description={t("resetPassword.description", { email })}
+        showArrow={timerUp()}
       />
       <Formik
         initialValues={{
@@ -131,7 +151,6 @@ const ResetPasswordScreen = () => {
         }) => (
           <View style={styles.formikContainer}>
             <CustomInput
-              label={"Reset Code"}
               placeholder={t("resetPassword.resetCodePlaceholder")}
               errors={errors.resetCode}
               touched={touched.resetCode}
@@ -143,7 +162,6 @@ const ResetPasswordScreen = () => {
               keyboardType="numeric"
             />
             <CustomInput
-              label={"New Password"}
               placeholder={t("resetPassword.newPasswordPlaceholder")}
               errors={errors.newPassword}
               touched={touched.newPassword}
@@ -156,7 +174,6 @@ const ResetPasswordScreen = () => {
               onPressRightIcon={() => setShowPassword(!showPassword)}
             />
             <CustomInput
-              label={"Confirm Password"}
               placeholder={t("resetPassword.confirmPasswordPlaceholder")}
               errors={errors.confirmNewPassword}
               touched={touched.confirmNewPassword}

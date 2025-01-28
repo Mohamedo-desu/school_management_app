@@ -4,7 +4,7 @@ import { useCallback, useMemo, useState } from "react";
 export const useLanguage = () => {
   const languages = useMemo(
     () => [
-      { code: "en", name: "English", flag: "GB" },
+      { code: "en-UK", name: "English", flag: "GB" },
       { code: "sw", name: "Kiswahili", flag: "KE" },
     ],
     []
