@@ -4,6 +4,7 @@ import CustomThemeProvider from "@/theme/CustomThemeProvider";
 import { tokenCache } from "@/utils/cache";
 import { ClerkProvider, useAuth } from "@clerk/clerk-expo";
 import * as Sentry from "@sentry/react-native";
+import * as QuickActions from "expo-quick-actions";
 import {
   Slot,
   useNavigationContainerRef,
@@ -13,7 +14,7 @@ import {
 import * as Updates from "expo-updates";
 import LottieView from "lottie-react-native";
 import React, { useEffect } from "react";
-import { LogBox, View } from "react-native";
+import { LogBox, Platform, View } from "react-native";
 import { KeyboardProvider } from "react-native-keyboard-controller";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { moderateScale } from "react-native-size-matters";
@@ -98,7 +99,7 @@ const InitialLayout = () => {
     const inPublicGroup = segments[0] === "(public)";
 
     if (isSignedIn && !inAuthGroup) {
-      router.replace("/(authenticated)/");
+      router.replace("/(authenticated)");
     } else if (!isSignedIn && !inPublicGroup) {
       router.replace("/(public)");
     }
@@ -130,15 +131,28 @@ const InitialLayout = () => {
 
 const RootLayout = () => {
   useUpdates();
+
   const ref = useNavigationContainerRef();
+  const { top } = useSafeAreaInsets();
 
   useEffect(() => {
     if (ref?.current) {
       navigationIntegration.registerNavigationContainer(ref);
     }
+    QuickActions.setItems([
+      {
+        title: "Wait! Don't delete me!",
+        subtitle: "We're here to help",
+        icon:
+          Platform.OS === "ios"
+            ? "symbol:person.crop.circle.badge.questionmark"
+            : "help_icon",
+        id: "0",
+        params: { href: "/(public)/help" },
+      },
+    ]);
   }, [ref]);
 
-  const { top } = useSafeAreaInsets();
   return (
     <ClerkProvider
       publishableKey={CLERK_PUBLISHABLE_KEY!}

@@ -8,7 +8,7 @@ import ArrowLeftIcon from "./ArrowLeftIcon";
 interface AuthHeaderProps {
   title: string;
   description: string;
-  showArrow: boolean;
+  showArrow?: boolean;
 }
 
 const AuthHeader: FC<AuthHeaderProps> = ({

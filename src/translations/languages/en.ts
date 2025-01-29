@@ -40,6 +40,10 @@ export const en = {
       resendCode: "Resend Code",
       resendCodeIn: "Resend code in {{displayTime}}",
     },
+    help: {
+      title: "We are here to help!",
+      description: "Please contact us if you have any questions or concerns.",
+    },
     index: {
       logOut: "Log Out",
     },

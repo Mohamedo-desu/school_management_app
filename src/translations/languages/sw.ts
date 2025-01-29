@@ -40,6 +40,11 @@ export const sw = {
       resendCode: "Tuma tena nambari",
       resendCodeIn: "Tuma tena nambari baada ya {{displayTime}}",
     },
+    help: {
+      title: "Tunakuwa hapa kukuwezesha!",
+      description:
+        "Tafadhali wasiliana nasi kama una swali lolote au wasiwasi.",
+    },
     index: {
       logOut: "Ondoka",
     },
